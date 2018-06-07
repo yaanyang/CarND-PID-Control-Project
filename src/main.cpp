@@ -39,7 +39,7 @@ int main()
   pid_s.Init(0.134611, 0.000270736, 3.05349);
 
   // PID controller for throuttle
-  pid_t.Init(0.316731, 0.0000, 0.0226185);
+  pid_t.Init(0.1, 0.002, 0.0);
 
   h.onMessage([&pid_s, &pid_t](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -68,8 +68,8 @@ int main()
             pid_s.UpdateError(cte);
             steer_value = - pid_s.TotalError();
 
-            pid_t.UpdateError(cte);
-            throttle_value = 0.75 - pid_t.TotalError();
+            pid_t.UpdateError(speed);
+            throttle_value = 9 - pid_t.TotalError();
 
             // Convert to radian
             //steer_value = deg2rad(steer_value);
