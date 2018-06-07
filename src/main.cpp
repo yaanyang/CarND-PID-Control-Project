@@ -68,8 +68,8 @@ int main()
             pid_s.UpdateError(cte);
             steer_value = - pid_s.TotalError();
 
-            pid_t.UpdateError(40.0 - speed);
-            throttle_value = 0.3 * pid_t.TotalError();
+            pid_t.UpdateError(30.0 - speed);
+            throttle_value = 0.2 * pid_t.TotalError();
 
             // Convert to radian
             //steer_value = deg2rad(steer_value);
