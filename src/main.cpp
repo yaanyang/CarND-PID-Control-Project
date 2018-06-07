@@ -64,12 +64,12 @@ int main()
             steer_value = - pid.TotalError();
 
             // Check max steering value
-            if (steer_value < -1.0) {
-                steer_value = -1.0;
-            }
-            else if (steer_value > 1.0) {
-                steer_value = 1.0;
-            }            
+            //if (steer_value < -1.0) {
+            //    steer_value = -1.0;
+            //}
+            //else if (steer_value > 1.0) {
+            //    steer_value = 1.0;
+            //}            
 
             // DEBUG
             std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
