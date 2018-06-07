@@ -71,6 +71,10 @@ int main()
             pid_t.UpdateError(cte);
             throttle_value = 0.3 / pid_t.TotalError();
 
+            if (speed > 60.0) {
+                throttle_value = - pid_t.TotalError();
+            }
+
             // Convert to radian
             //steer_value = deg2rad(steer_value);
 
