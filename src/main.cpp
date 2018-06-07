@@ -64,7 +64,7 @@ int main()
             steer_value = - pid.TotalError();
 
             // Convert to radian
-            steer_value = deg2rad(steer_value);
+            //steer_value = deg2rad(steer_value);
 
             // Check max steering value
             if (steer_value < -1.0) {
