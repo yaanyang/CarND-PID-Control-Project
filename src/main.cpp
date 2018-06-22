@@ -39,7 +39,7 @@ int main()
   pid_s.Init(0.029, 0.0049, 0.1033);
 
   // PID controller for throuttle
-  pid_t.Init(0.2, 0.0, 1.0);
+  pid_t.Init(0.029, 0.0, 0.1033);
 
   h.onMessage([&pid_s, &pid_t](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
