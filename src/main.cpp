@@ -36,10 +36,10 @@ int main()
   // TODO: Initialize the pid variable.
   
   // PID controller for steering
-  pid_s.Init(0.029, 0.0049, 0.1033);
+  pid_s.Init(0.1, 0.002, 3.0);
 
   // PID controller for throuttle
-  pid_t.Init(0.029, 0.0, 0.1033);
+  pid_t.Init(0.3, 0.0, 0.02);
 
   h.onMessage([&pid_s, &pid_t](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -69,8 +69,8 @@ int main()
             steer_value = - pid_s.TotalError();
 
             // Update errors between current and desired speeds
-            pid_t.UpdateError(25.0 - speed);
-            throttle_value = pid_t.TotalError();
+            pid_t.UpdateError((speed / 25) * fabs(cte));
+            throttle_value = -pid_t.TotalError();
             
             // Check max steering value
             if (steer_value < -1.0) {
