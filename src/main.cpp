@@ -36,7 +36,7 @@ int main()
   // TODO: Initialize the pid variable.
   
   // PID controller for steering
-  pid_s.Init(0.134611, 0.000270736, 3.05349);
+  pid_s.Init(0.15, 0.0002, 3.0);
 
   // PID controller for throuttle
   pid_t.Init(0.03, 0.0, 0.002);
@@ -69,7 +69,7 @@ int main()
             steer_value = - pid_s.TotalError();
 
             // Update errors between current and desired speeds
-            pid_t.UpdateError(speed - 25);
+            pid_t.UpdateError(speed - 30);
             throttle_value = - pid_t.TotalError();
             
             // Check max steering value
