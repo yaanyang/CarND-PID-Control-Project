@@ -69,8 +69,8 @@ int main()
             steer_value = - pid_s.TotalError();
 
             // Update errors between current and desired speeds
-            pid_t.UpdateError(fabs(cte) * (speed - 25));
-            throttle_value = -pid_t.TotalError();
+            pid_t.UpdateError(speed - 25);
+            throttle_value = - pid_t.TotalError();
             
             // Check max steering value
             if (steer_value < -1.0) {
