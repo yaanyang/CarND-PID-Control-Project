@@ -36,7 +36,7 @@ int main()
   // TODO: Initialize the pid variable.
   
   // PID controller for steering
-  pid_s.Init(2.9331, 0.4931, 10.3266);
+  pid_s.Init(0.0029, 0.0005, 0.0103);
 
   // PID controller for throuttle
   pid_t.Init(0.2, 0.0, 1.0);
