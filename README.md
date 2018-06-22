@@ -1,4 +1,38 @@
-# CarND-Controls-PID
+# Project Rubic Discussions
+
+---
+
+## 1. Describe the effect each of the P, I, D components had in your implementation.
+
+* P Component:
+
+P component is the most noticeable effect on the controller since it is directly propotional to CTE. As the CTE getting bigger, P component would drive the steering angle larger to keep vehicle on track. However, P conponent always overshoots as it only tracks CTE value and when CTE=0, the vehicle still has speed.
+
+* D Component:
+
+D component is introduced to solve overshooting problem with P component only. Instead of measuring CTE ifself, the D component takes differential of current and previous CTE values. When the vehicle is running close to track center, P component becomes less effective and the small difference between CTEs keeps the steering angle small and make vehicle on track.
+
+* I Component:
+
+I component has least effect on the controller as the parameter usually is small. It was mainly used to solve the systematically bias. For example, steering wheel bias. Since the mechaninal parts have limitation and may introduce certain offeset, the I component tracks sum of the CTEs over time and gradually correct the error that are hidden from P/D components.
+
+## 2. Describe how the final hyperparameters were chosen.
+
+The hyperparameters were manually tuned. I started with initial values from Sebastian's twiddle course, but soon found that those are too large and the vehicle went off-track quickly. Then I reduced all parameters by several orders and fine tuned each of them.
+
+First, I largely reduced P parameter and keep D parameter relatively big as the track is narrow and I wanted to keep the vehicle on the center. Then, I also largely reduced I parameter since there is no obvious system bias observed.
+
+Besides steering controller, I also made another PID controller to control throttle. Instead of using CTE as error argument, I used speed difference as the measure. The desired speed was set at 25 MPH and the parameters were tuned.
+
+I keep P parameter relatively large as I wanted the vehicle to run close to desired speed but no need for it to stay there. I completely eliminated I component since it is a sum and will only increase.
+
+The final paramers were chosen mainly by try and error and I was able to drive the vehicle properly and safely with the parameters: 
+
+* Steering Controller: `Kp = 0.15, Ki = 0.0002, Kd = 3.0`.
+
+* Throttle Controller: `Kp = 0.03, Ki = 0.0, Kd = 0.002`.
+
+# Original README: CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
 ---
